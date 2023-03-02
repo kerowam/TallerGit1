@@ -3,6 +3,7 @@
 #include <stdio.h>
 #include <string.h>
 #include "operations.h"
+#include "libft.h"
 
 int main(int argc, char **args)
 {
@@ -35,11 +36,6 @@ int main(int argc, char **args)
 	else
 		printf("Error: bad expression\n");
 	return (0);
-}
-
-int ft_isdigit(char d)
-{
-	return ('0' <= d && d <= '9');
 }
 
 int ft_isoperator(char c)
