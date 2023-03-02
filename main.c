@@ -3,27 +3,30 @@
 #include <stdio.h>
 #include <string.h>
 #include "operations.h"
+#include "libft.h"
 
 int main(int argc, char **args)
 {
-	char *expr;
+	char **expr;
 	int a;
 	int b;
 
-	if (argc == 2)
+	if (argc == 1)
+		print_help();
+	else if (argc == 2)
 	{
-		expr = in_read(args[1]);
+		expr = ft_split(args[1], ' ');
 		if (!expr)
 			return (1);
-		a = expr[0] - '0';
-		b = expr[2] - '0';
-		if (expr[1] == '+')
+		a = ft_atoi(expr[0]);
+		b = ft_atoi(expr[2]);
+		if (ft_strncmp(expr[1], "+", 1) == 0)
 			printf("%d\n", op_add(a, b));
-		else if (expr[1] == '-')
+		else if (ft_strncmp(expr[1], "-", 1) == 0)
 			printf("%d\n", op_sub(a, b));
-		else if (expr[1] == '*')
+		else if (ft_strncmp(expr[1], "*", 1) == 0)
 			printf("%d\n", op_mul(a, b));
-		else if (expr[1] == '/')
+		else if (ft_strncmp(expr[1], "/", 1) == 0)
 			printf("%d\n", op_div(a, b));
 		else
 		{
@@ -37,14 +40,9 @@ int main(int argc, char **args)
 	return (0);
 }
 
-int ft_isdigit(char d)
+int ft_isoperator(char **c)
 {
-	return ('0' <= d && d <= '9');
-}
-
-int ft_isoperator(char c)
-{
-	return (c == '+' || c == '-' || c == '*' || c == '/');
+	return (ft_strncmp(c, "+", 1) == 0 || ft_strncmp(c, "-", 1) == 0 || ft_strncmp(c, "*", 1) == 0 || ft_strncmp(c, "/", 1) == 0);
 }
 
 int ft_isspace(char c)

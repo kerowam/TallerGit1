@@ -1,10 +1,10 @@
 ### VARIABLES ###
 
 # Names
-NAME	= 	HAL
+NAME 	= 	HAL
 
 # Instructions
-CC 		=	gcc -Wall -Wextra -Werror
+CC 		=	gcc -Wall -Wextra -Werror -ILibft
 RM 		= 	rm -f
 
 # Files
@@ -15,16 +15,21 @@ OBJECTS =	$(SOURCES:.c=.o)
 ### RULES ###
 
 # Main rules
-all: $(OBJECTS)
-	@$(CC) -o $(NAME) $(OBJECTS)
+all: libft $(OBJECTS)
+	@$(CC) -o $(NAME) $(OBJECTS) Libft/libft.a
 	@echo "Calculator '$(NAME)' created."
+
+libft:
+	@make -C Libft
 
 clean:
 	@$(RM) $(OBJECTS)
+	@make -C Libft clean
 	@echo "Object files removed."
 
 fclean: clean
 	@$(RM) $(NAME)
+	@make -C Libft fclean
 	@echo "File '$(NAME)' removed."
 
 re: fclean all
