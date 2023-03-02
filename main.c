@@ -35,3 +35,11 @@ char *in_read(char *str)
 	}
 	return (expr);
 }
+
+void print_help(void)
+{
+	printf("Usage: ./HAL \"num op num\"\n");
+	printf("    where\n");
+	printf("        <num> is a number\n");
+	printf("        <op> is one of \'+\', \'-\', \'*\', \'/\'\n");
+}
