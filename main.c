@@ -1,4 +1,41 @@
 #include <stdio.h>
+#include <stdlib.h>
+#include <stdio.h>
+#include <string.h>
+#include "operations.h"
+
+int main(int argc, char **args)
+{
+	char *expr;
+	int a;
+	int b;
+
+	if (argc == 2)
+	{
+		expr = in_read(args[1]);
+		if (!expr)
+			return (1);
+		a = expr[0] - '0';
+		b = expr[2] - '0';
+		if (expr[1] == '+')
+			printf("%d\n", op_add(a, b));
+		else if (expr[1] == '-')
+			printf("%d\n", op_sub(a, b));
+		else if (expr[1] == '*')
+			printf("%d\n", op_mul(a, b));
+		else if (expr[1] == '/')
+			printf("%d\n", op_div(a, b));
+		else
+		{
+			printf("Error: bad expression\n");
+			return (1);
+		}
+		free(expr);
+	}
+	else
+		printf("Error: bad expression\n");
+	return (0);
+}
 
 int ft_isdigit(char d)
 {
