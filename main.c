@@ -78,3 +78,22 @@ void print_help(void)
 	printf("        <num> is a number\n");
 	printf("        <op> is one of \'+\', \'-\', \'*\', \'/\'\n");
 }
+
+void operate(int a, char *op, int b)
+{
+	if (ft_strncmp(op, "+", 1) == 0)
+		printf("%d", a + b);
+	else if (ft_strncmp(op, "-", 1) == 0)
+		printf("%d", a - b);
+	else if (ft_strncmp(op, "*", 1) == 0)
+		printf("%d", a * b);
+	else if (ft_strncmp(op, "/", 1) == 0)
+	{
+		if (b != 0)
+			printf("%d", a / b);
+		else
+			printf("Error: not a number");
+	}
+	else
+		printf("Error: bad expression");
+}
